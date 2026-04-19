@@ -3,16 +3,16 @@
 import { useState } from "react";
 
 const services = [
-  { icon: "🔧", title: "Reparación", desc: "Diagnóstico IA + presupuesto instantáneo" },
-  { icon: "🚗", title: "Alquiler", desc: "Flota de 20 vehículos disponibles" },
-  { icon: "⚡", title: "Servicio Rápido", desc: "Turno en el día" },
-  { icon: "🔄", title: "Vehículo Sustitución", desc: "Mientras repara el tuyo" },
+  { icon: "🔧", title: "Repair", desc: "AI diagnosis + instant quote" },
+  { icon: "🚗", title: "Rental", desc: "20-vehicle fleet available" },
+  { icon: "⚡", title: "Quick Service", desc: "Same-day appointments" },
+  { icon: "🔄", title: "Loan Vehicle", desc: "While we fix yours" },
 ];
 
 const fleet = [
-  { model: "Toyota Camry", type: "Sedán", price: 45, available: true },
+  { model: "Toyota Camry", type: "Sedan", price: 45, available: true },
   { model: "Honda CR-V", type: "SUV", price: 55, available: true },
-  { model: "Toyota Corolla", type: "Sedán", price: 40, available: false },
+  { model: "Toyota Corolla", type: "Sedan", price: 40, available: false },
   { model: "Mitsubishi Outlander", type: "SUV", price: 60, available: true },
   { model: "Hyundai i30", type: "Hatchback", price: 38, available: true },
   { model: "Nissan X-Trail", type: "SUV", price: 58, available: false },
@@ -20,20 +20,20 @@ const fleet = [
 
 const faqs = [
   {
-    q: "¿Cuánto cuesta el diagnóstico?",
-    a: "El diagnóstico inicial es gratuito. Solo pagarás por la reparación.",
+    q: "How much is the diagnosis?",
+    a: "Initial diagnosis is free. You only pay for the repair.",
   },
   {
-    q: "¿Puedo alquilar sin licencia australiana?",
-    a: "Sí, con licencia internacional (IDP) válida. Mayor de 21 años.",
+    q: "Can I rent without an Australian license?",
+    a: "Yes, with a valid international license (IDP). Must be 21+ years old.",
   },
   {
-    q: "¿Tienen vehículo de sustitución?",
-    a: "Sí, incluido en servicios premium. Consulta disponibilidad.",
+    q: "Do you have a loan vehicle?",
+    a: "Yes, included with premium services. Check availability.",
   },
   {
-    q: "¿Cuánto tarda una reparación típica?",
-    a: "Según tipo: aceite/filtros (1h), frenos (2-4h), motor (variable).",
+    q: "How long does a typical repair take?",
+    a: "Depends on type: oil/filter (1hr), brakes (2-4hrs), engine (varies).",
   },
 ];
 
@@ -43,6 +43,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", service: "repair", date: "" });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [bookingSent, setBookingSent] = useState(false);
 
   const handleChat = async () => {
     if (!chatInput.trim()) return;
@@ -56,17 +57,18 @@ export default function Home() {
         body: JSON.stringify({ message: chatInput }),
       });
       const data = await res.json();
-      setChatResponse(data.reply || "Consulta nuestros servicios o llama al +61 7 1234 5678");
+      setChatResponse(data.reply || "Contact us at +61 7 1234 5678");
     } catch {
-      setChatResponse("Describe tu avería y te respondemos en breve.");
+      setChatResponse("Describe your issue and we'll respond shortly.");
     }
     setLoading(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Reserva enviada! Te contactaremos pronto.");
+    setBookingSent(true);
     setForm({ name: "", phone: "", service: "repair", date: "" });
+    setTimeout(() => setBookingSent(false), 3000);
   };
 
   return (
@@ -75,19 +77,19 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200">
         <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
           <h1 className="text-xl font-bold text-teal-600">
-            🔧 Repara & Alquila
+            🔧 Fix & Rent Gold Coast
           </h1>
           <div className="hidden md:flex gap-6 text-sm font-medium">
-            <a href="#servicios" className="hover:text-teal-600">Servicios</a>
-            <a href="#flota" className="hover:text-teal-600">Flota</a>
-            <a href="#chat" className="hover:text-teal-600">Chat IA</a>
-            <a href="#contacto" className="hover:text-teal-600">Contacto</a>
+            <a href="#services" className="hover:text-teal-600">Services</a>
+            <a href="#fleet" className="hover:text-teal-600">Fleet</a>
+            <a href="#chat" className="hover:text-teal-600">AI Chat</a>
+            <a href="#contact" className="hover:text-teal-600">Contact</a>
           </div>
           <a
-            href="#contacto"
+            href="#contact"
             className="bg-teal-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-teal-700"
           >
-            Reservar
+            Book Now
           </a>
         </div>
       </nav>
@@ -96,23 +98,23 @@ export default function Home() {
       <section className="pt-24 pb-16 px-4 bg-gradient-to-b from-teal-50 to-stone-50">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
-            Taller Inteligente + Alquiler en Gold Coast
+            Smart Car Repair + Rental in Gold Coast
           </h1>
           <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-            Diagnóstico con IA. Reserva en minutos. Vehículo de sustitución disponible.
+            AI-powered diagnosis. Book in minutes. Loan vehicle available.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <a
-              href="#contacto"
+              href="#contact"
               className="bg-teal-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-700"
             >
-              Reservar Reparación
+              Book Repair
             </a>
             <a
-              href="#flota"
+              href="#fleet"
               className="bg-slate-800 text-white px-8 py-3 rounded-full font-semibold hover:bg-slate-900"
             >
-              Ver Flota
+              View Fleet
             </a>
           </div>
         </div>
@@ -123,27 +125,27 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
             <div className="text-3xl font-bold text-amber-500">20+</div>
-            <div className="text-sm text-slate-300">Vehículos</div>
+            <div className="text-sm text-slate-300">Vehicles</div>
           </div>
           <div>
             <div className="text-3xl font-bold text-amber-500">500+</div>
-            <div className="text-sm text-slate-300">Reparaciones</div>
+            <div className="text-sm text-slate-300">Repairs</div>
           </div>
           <div>
             <div className="text-3xl font-bold text-amber-500">4.8★</div>
-            <div className="text-sm text-slate-300">Valoraciones</div>
+            <div className="text-sm text-slate-300">Rating</div>
           </div>
           <div>
             <div className="text-3xl font-bold text-amber-500">24/7</div>
-            <div className="text-sm text-slate-300">Emergencias</div>
+            <div className="text-sm text-slate-300">Emergencies</div>
           </div>
         </div>
       </section>
 
-      {/* Servicios */}
-      <section id="servicios" className="py-16 px-4">
+      {/* Services */}
+      <section id="services" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Nuestros Servicios</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((s, i) => (
               <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md">
@@ -156,10 +158,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Flota */}
-      <section id="flota" className="py-16 px-4 bg-white">
+      {/* Fleet */}
+      <section id="fleet" className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Nuestra Flota</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Our Fleet</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {fleet.map((car, i) => (
               <div key={i} className="bg-stone-50 p-6 rounded-2xl border border-stone-200">
@@ -170,17 +172,17 @@ export default function Home() {
                   </div>
                   {car.available ? (
                     <span className="bg-teal-100 text-teal-700 px-2 py-1 rounded text-xs font-medium">
-                      Disponible
+                      Available
                     </span>
                   ) : (
                     <span className="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs font-medium">
-                      Occupado
+                      Rented
                     </span>
                   )}
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-2xl font-bold text-teal-600">${car.price}</span>
-                  <span className="text-slate-400 text-sm">/día</span>
+                  <span className="text-slate-400 text-sm">/day</span>
                 </div>
                 <button
                   disabled={!car.available}
@@ -190,7 +192,7 @@ export default function Home() {
                       : "bg-stone-200 text-stone-400 cursor-not-allowed"
                   }`}
                 >
-                  {car.available ? "Alquilar" : "No disponible"}
+                  {car.available ? "Rent" : "Unavailable"}
                 </button>
               </div>
             ))}
@@ -201,19 +203,19 @@ export default function Home() {
       {/* Chat IA */}
       <section id="chat" className="py-16 px-4 bg-gradient-to-b from-stone-50 to-teal-50">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-4">Chat con IA - Diagnóstico</h2>
+          <h2 className="text-3xl font-bold text-center mb-4">AI Chat - Diagnosis</h2>
           <p className="text-center text-slate-600 mb-8">
-            Describe tu avería y la IA te da un diagnóstico preliminar
+            Describe your issue and get an instant preliminary diagnosis
           </p>
           <div className="bg-white rounded-2xl shadow-lg p-6 border border-stone-100">
             <div className="mb-4 min-h-[120px] bg-stone-50 rounded-xl p-4">
               {loading ? (
-                <p className="text-slate-400">Analizando...</p>
+                <p className="text-slate-400">Analyzing...</p>
               ) : chatResponse ? (
                 <p className="text-slate-700">{chatResponse}</p>
               ) : (
                 <p className="text-slate-400 text-sm">
-                  Ejemplo: "Oigo un ruido al Frenar" o "El coche no arranca"
+                  Try: "I hear a noise when braking" or "Car won't start"
                 </p>
               )}
             </div>
@@ -222,7 +224,7 @@ export default function Home() {
                 type="text"
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
-                placeholder="Describe tu problema..."
+                placeholder="Describe your problem..."
                 className="flex-1 px-4 py-3 border border-stone-200 rounded-xl focus:outline-none focus:border-teal-500"
                 onKeyDown={(e) => e.key === "Enter" && handleChat()}
               />
@@ -231,22 +233,22 @@ export default function Home() {
                 disabled={loading}
                 className="bg-teal-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-teal-700 disabled:opacity-50"
               >
-                Enviar
+                Send
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonios */}
+      {/* Testimonials */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Qué dicen nuestros clientes</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { name: "James T.", text: "diagnósticoinstantáneo, me ahorraron tiempo y dinero.", stars: "⭐⭐⭐⭐⭐" },
-              { name: "Sarah M.", text: "Alquiler super fácil, sin papeleo. Volveré.", stars: "⭐⭐⭐⭐⭐" },
-              { name: "Mike R.", text: "El vehículo de sustitución salvó mi viaje.", stars: "⭐⭐⭐⭐" },
+              { name: "James T.", text: "Instant diagnosis, saved me time and money.", stars: "⭐⭐⭐⭐⭐" },
+              { name: "Sarah M.", text: "Super easy rental, no paperwork. Will be back.", stars: "⭐⭐⭐⭐⭐" },
+              { name: "Mike R.", text: "Loan vehicle saved my trip.", stars: "⭐⭐⭐⭐" },
             ].map((t, i) => (
               <div key={i} className="bg-stone-50 p-6 rounded-2xl">
                 <div className="text-amber-400 mb-2">{t.stars}</div>
@@ -261,7 +263,7 @@ export default function Home() {
       {/* FAQs */}
       <section className="py-16 px-4 bg-slate-800 text-white">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Preguntas Frecuentes</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
           <div className="space-y-3">
             {faqs.map((f, i) => (
               <div key={i} className="border border-slate-600 rounded-xl overflow-hidden">
@@ -281,16 +283,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contacto / Reserva */}
-      <section id="contacto" className="py-16 px-4">
+      {/* Contact / Booking */}
+      <section id="contact" className="py-16 px-4">
         <div className="max-w-xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-4">Reserva tu Turno</h2>
+          <h2 className="text-3xl font-bold text-center mb-4">Book Your Appointment</h2>
           <p className="text-center text-slate-600 mb-8">
-            Completa el formulario y te contactaremos
+            Fill the form and we'll contact you
           </p>
           <form onSubmit={handleSubmit} className="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-1">Nombre</label>
+              <label className="block text-sm font-medium mb-1">Name</label>
               <input
                 type="text"
                 required
@@ -300,7 +302,7 @@ export default function Home() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Teléfono</label>
+              <label className="block text-sm font-medium mb-1">Phone</label>
               <input
                 type="tel"
                 required
@@ -310,19 +312,19 @@ export default function Home() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Servicio</label>
+              <label className="block text-sm font-medium mb-1">Service</label>
               <select
                 value={form.service}
                 onChange={(e) => setForm({ ...form, service: e.target.value })}
                 className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:outline-none focus:border-teal-500"
               >
-                <option value="repair">Reparación</option>
-                <option value="rental">Alquiler</option>
-                <option value="both">Ambos</option>
+                <option value="repair">Repair</option>
+                <option value="rental">Rental</option>
+                <option value="both">Both</option>
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Fecha preferida</label>
+              <label className="block text-sm font-medium mb-1">Preferred Date</label>
               <input
                 type="date"
                 required
@@ -335,7 +337,7 @@ export default function Home() {
               type="submit"
               className="w-full bg-teal-600 text-white py-3 rounded-xl font-semibold hover:bg-teal-700"
             >
-              Solicitar Reserva
+              {bookingSent ? "✓ Sent! We'll call you soon" : "Request Booking"}
             </button>
           </form>
         </div>
@@ -345,8 +347,8 @@ export default function Home() {
       <footer className="py-8 px-4 bg-slate-900 text-slate-400 text-center">
         <div className="max-w-6xl mx-auto">
           <p>📍 Gold Coast, Queensland, Australia</p>
-          <p className="mt-2">📞 +61 7 1234 5678 | ✉️ info@reparayalquila.com.au</p>
-          <p className="mt-4 text-sm">© 2026 Repara & Alquila Gold Coast</p>
+          <p className="mt-2">📞 +61 7 1234 5678 | ✉️ info@fixrentgoldcoast.com.au</p>
+          <p className="mt-4 text-sm">© 2026 Fix & Rent Gold Coast</p>
         </div>
       </footer>
     </div>

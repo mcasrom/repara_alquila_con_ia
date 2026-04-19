@@ -15,13 +15,18 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Reparación + Alquiler Coches Gold Coast | Taller Inteligente",
-  description: "Taller mecánico + alquiler de vehículos en Gold Coast. Diagnóstico IA, reservas online, vehículo de sustitución. Llama al +61 7 1234 5678",
-  keywords: ["car repair Gold Coast", "car rental Gold Coast", "cheap car hire Gold Coast", "mechanic Gold Coast", "taller mecánico Australia"],
+  title: "Car Repair + Car Rental Gold Coast | Smart Mechanic + Cheap Hire",
+  description: "Mechanic workshop + car rental in Gold Coast, Queensland. AI diagnosis, online booking, loan vehicle. 20+ vehicles. Call +61 7 1234 5678",
+  keywords: ["car repair Gold Coast", "car rental Gold Coast", "cheap car hire Gold Coast", "mechanic Gold Coast", "auto repair", "vehicle rental", "Gold Coast mechanic", "car service"],
   openGraph: {
-    title: "Repara & Alquila Gold Coast",
-    description: "Taller inteligente + alquiler de vehículos en Gold Coast",
+    title: "Fix & Rent Gold Coast - Car Repair + Rental",
+    description: "Smart mechanic + car rental in Gold Coast. AI diagnosis, instant quotes, loan vehicle.",
     type: "website",
+    locale: "en_AU",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -31,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${outfit.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${dmSans.variable}`}>
       <body className="min-h-full">{children}</body>
     </html>
   );

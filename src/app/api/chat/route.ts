@@ -2,20 +2,20 @@ import { NextRequest, NextResponse } from "next/server";
 
 const OPENAI_KEY = process.env.OPENAI_API_KEY;
 
-const DIAGNOSIS_PROMPT = `Eres un mecánico experto de Gold Coast, Australia. Analiza el problema descrito por el cliente y proporciona:
-1. Posible causa (en 1-2 oraciones)
-2. Servicios relacionados (ej: cambio de aceite, pastillas de freno, batería)
-3. Presupuesto estimado (AUD)
-4. Si requiere cita urgente
+const DIAGNOSIS_PROMPT = `You are an expert mechanic from Gold Coast, Queensland, Australia. Analyze the customer's problem and provide:
+1. Possible cause (1-2 sentences)
+2. Related services (eg: oil change, brake pads, battery)
+3. Estimated cost (AUD)
+4. If urgent appointment needed
 
-Responde en español, de forma clara y profesional.`;
+Respond in English, clear and professional.`;
 
 export async function POST(req: NextRequest) {
   try {
     const { message } = await req.json();
 
     if (!message?.trim()) {
-      return NextResponse.json({ reply: "Describe tu problema" });
+      return NextResponse.json({ reply: "Please describe your issue" });
     }
 
     if (!OPENAI_KEY) {
@@ -44,28 +44,37 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ reply });
   } catch (error) {
-    return NextResponse.json({ reply: "Error. Llama al +61 7 1234 5678" });
+    return NextResponse.json({ reply: "Error. Call +61 7 1234 5678" });
   }
 }
 
 function diagnoseFallback(message: string): string {
   const m = message.toLowerCase();
   
-  if (m.includes("frenar") || m.includes("freno") || m.includes("ruido")) {
-    return "📌 Possible: Pastillas de freno desgastadas. Cambios: $150-300 AUD. ¿Solicitas turno?";
+  if (m.includes("brake") || m.includes("noise") || m.includes("stopping")) {
+    return "🔧 Possible: Worn brake pads. Cost: $150-300 AUD. Book a time?";
   }
-  if (m.includes("arrancar") || m.includes("batería") || m.includes("no arranca")) {
-    return "📌 Posible: Batería descargada o defectuosa. Cambios: $150-250 AUD. ¿Solicitas turno?";
+  if (m.includes("start") || m.includes("battery") || m.includes("won't start")) {
+    return "🔧 Possible: Flat/defective battery. Cost: $150-250 AUD. Book a time?";
   }
-  if (m.includes("aceite") || m.includes("fuga")) {
-    return "📌 Posible: Fuga de aceite o aceite bajo. Revisión: $80-150 AUD. ¿Solicitas turno?";
+  if (m.includes("oil") || m.includes("leak") || m.includes("burning")) {
+    return "🔧 Possible: Oil leak or low oil. Inspection: $80-150 AUD. Book a time?";
   }
-  if (m.includes("motor") || m.includes("caliente") || m.includes("sobrecalienta")) {
-    return "📌 Posible: Sobrecalentamiento. Urgente: revisión inmediata. Llama ahora: +61 7 1234 5678";
+  if (m.includes("engine") || m.includes("hot") || m.includes("overheat")) {
+    return "🔧 Possible: Overheating. URGENT: call now +61 7 1234 5678";
   }
-  if (m.includes("rueda") || m.includes("neumático") || m.includes("pinchazo")) {
-    return "📌 Posible: Neumático pinchado o baja presión. Cambios: $30-80 AUD. ¿Solicitas turno?";
+  if (m.includes("tire") || m.includes("puncture") || m.includes("flat")) {
+    return "🔧 Possible: Puncture or low pressure. Cost: $30-80 AUD. Book a time?";
+  }
+  if (m.includes("steering") || m.includes("wheel") || m.includes("pull")) {
+    return "🔧 Possible: Wheel alignment or power steering. Cost: $80-150 AUD. Book a time?";
+  }
+  if (m.includes("clutch") || m.includes("gear") || m.includes("shift")) {
+    return "🔧 Possible: Clutch issue. Inspection: $100-200 AUD. Book a time?";
+  }
+  if (m.includes("ac") || m.includes("air") || m.includes("heat") || m.includes("cooling")) {
+    return "🔧 Possible: AC system issue. Cost: $100-300 AUD. Book a time?";
   }
   
-  return "📌 Describe más síntomas.Nuestroacheobot analiza para darte presupuesto estimado. ¿Prefieres llamar al +61 7 1234 5678?";
+  return "🔧 Describe more symptoms for an estimate. Or call +61 7 1234 5678";
 }

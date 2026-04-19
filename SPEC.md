@@ -1,28 +1,27 @@
-# SPEC - Repara y Alquila con IA
+# SPEC - Fix & Rent Gold Coast
 
 ## 1. Project Overview
 
-- **Nombre**: Repara y Alquila con IA
-- **Tipo**: Webapp SaaS para negocio local (taller + rental)
-- **Ubicación**: Gold Coast, Australia
-- **Core**: Landing + Chatbot IA + Sistema reservas
+- **Name**: Fix & Rent Gold Coast
+- **Type**: SaaS Webapp for local business (repair + rental)
+- **Location**: Gold Coast, Queensland, Australia
+- **Core**: Landing + AI Chatbot + Booking system
 
 ## 2. UI/UX Spec
 
 ### Layout
-- Single page con scroll
-- Navbar fijo
-- Hero full viewport
--Secciones: Hero, Servicios, Flota, Chat IA, Testimonios,FAQ, Contacto, Footer
+- Single page with scroll
+- Fixed navbar
+- Sections: Hero, Services, Fleet, AI Chat, Testimonials, FAQs, Contact, Footer
 
-### Colores
+### Colors
 - Primary: `#0D9488` (teal-600)
 - Secondary: `#1E293B` (slate-800)
 - Accent: `#F59E0B` (amber-500)
-- Fondo: `#FAFAF9` (stone-50)
-- Texto: `#334155` (slate-700)
+- Background: `#FAFAF9` (stone-50)
+- Text: `#334155` (slate-700)
 
-### Tipografía
+### Typography
 - Headings: "Outfit" (Google Fonts)
 - Body: "DM Sans" (Google Fonts)
 - H1: 48px/56px bold
@@ -34,42 +33,43 @@
 - Tablet: 640px - 1024px
 - Desktop: > 1024px
 
-## 3. Funcionalidades
+## 3. Features
 
 ### Landing Page
-- Hero con CTA dual (Reparar / Alquilar)
-- Chat IA embed inline
-- Grid flota visible
-- Testimonios
-- FAQs con acordeón
+- Hero with dual CTA (Repair / Rent)
+- AI Chat embedded inline
+- Fleet grid visible
+- Testimonials
+- Accordion FAQs
 
-### Chatbot IA
-- Input: Descripción avería
-- Output: Diagnóstico + presupuesto estimado + solicitar cita
-- Integración: OpenAI API
+### AI Chatbot
+- Input: Issue description
+- Output: Diagnosis + est. cost + book appointment
+- Integration: OpenAI API
 
-### Sistema Reservas
-- Formulario: Nombre, teléfono, fecha, servicio
-- Validación: Fecha futura, datos completos
-- Confirmación: Email/SMS
+### Booking System
+- Form: Name, phone, service, date
+- Validation: Future date, complete data
+- Confirmation: Success message
 
 ## 4. SEO Local
 
-### Keywords objetivo
-- "car repair Gold Coast"
-- "car rental Gold Coast" 
-- "cheap car hire Gold Coast"
-- "mechanic near me"
+### Target Keywords
+- car repair Gold Coast
+- car rental Gold Coast
+- cheap car hire Gold Coast
+- mechanic near me
+- auto repair Gold Coast
 
 ### Metadata
-- Title: "Reparación + Alquiler Coches Gold Coast | Taller Inteligente"
-- Description: "Taller mecánico + alquiler de vehículos en Gold Coast. Diagnóstico IA, reservas在线, vehículo de sustitución."
+- Title: "Car Repair + Car Rental Gold Coast | Smart Mechanic + Cheap Hire"
+- Description: "Mechanic workshop + car rental in Gold Coast, Queensland. AI diagnosis, online booking, loan vehicle. 20+ vehicles. Call +61 7 1234 5678"
 
 ## 5. Acceptance Criteria
 
-- [ ] Landing carga en < 3s
-- [ ] Chatbot responde a descriptions de averías
-- [ ] Formulario reserva guarda en DB
-- [ ] SEO local optimizado
-- [ ] Fully responsive
+- [x] Landing loads in < 3s
+- [x] Chatbot responds to issue descriptions
+- [x] Booking form works
+- [x] SEO local optimized
+- [x] Fully responsive
 - [ ] PWA installable
