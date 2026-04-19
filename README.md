@@ -1,42 +1,78 @@
-# Repara y Alquila con IA - Gold Coast
+# Fix & Rent Gold Coast - Project Documentation
 
-Sistema inteligente para taller + alquiler de vehículos en Gold Coast, Australia.
+## Overview
 
-## Propuesta de Valor
+Smart car repair + rental business in Gold Coast, Queensland, Australia. AI-powered diagnosis, online booking, 20+ vehicle fleet.
 
-- **Taller**: Diagnóstico IA de averías
-- **Alquiler**: Reserva en minutos, sin papeleo
-- **Combinado**: Vehículo de sustitución mientras/repara
+## Tech Stack
 
-## Arquitectura
+| Component | Technology |
+|-----------|-----------|
+| Frontend | Next.js 15 / Tailwind CSS |
+| Backend | Next.js API Routes |
+| AI | OpenAI API / Fallback rules |
+| Deployment | Vercel |
+| Hosting | vercel.app |
 
-| Componente | Tecnología |
-|------------|-------------|
-| Frontend | Next.js 15 / Tailwind |
-| Backend | FastAPI (Python) |
-| IA | OpenAI API / Ollama local |
-| DB | PostgreSQL |
-| Hosting | Vercel + Railway/Render |
+## Project Structure
 
-## Roadmap
+```
+src/app/
+├── page.tsx          # Landing page (all in one)
+├── layout.tsx         # Root layout + SEO metadata
+├── globals.css        # Global styles
+└── api/chat/
+    └── route.ts      # AI Chatbot endpoint
+```
 
-### Fase 1 (0-1 mes)
-- [x] Landing básica
-- [ ] Chatbot IA
-- [ ] Sistema reservas
+## Features
 
-### Fase 2 (1-3 meses)
+- [x] Landing page with hero, services, fleet
+- [x] AI chatbot for diagnosis
+- [x] Booking system (form)
+- [x] FAQs accordion
+- [x] Testimonials
+- [x] SEO local (Gold Coast)
+- [x] Fully responsive
+- [ ] Database integration
+- [ ] Email notifications
 - [ ] CRM
-- [ ] SEO
-- [ ] Automatización
 
-### Fase 3 (3-6 meses)
-- [ ] Pricing dinámico
-- [ ] Predictive maintenance
-- [ ] App móvil
+## SEO Keywords
 
-## Posicionamiento
+- car repair Gold Coast
+- car rental Gold Coast
+- cheap car hire Gold Coast
+- mechanic Gold Coast
+- auto repair
 
-> "El taller inteligente que diagnostica tu coche antes de que llegues"
+## Deployment
 
-> "Alquila en minutos, sin papeleo, con IA"
+```bash
+# Development
+npm run dev
+
+# Build
+npm run build
+
+# Deploy
+vercel --prod
+```
+
+## Environment Variables
+
+Create `.env.local`:
+
+```env
+OPENAI_API_KEY=sk-...
+```
+
+## Contact
+
+- Phone: +61 7 1234 5678
+- Email: info@fixrentgoldcoast.com.au
+- Address: Gold Coast, Queensland, Australia
+
+## License
+
+MIT
