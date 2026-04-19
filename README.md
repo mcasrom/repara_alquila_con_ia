@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Repara y Alquila con IA - Gold Coast
 
-## Getting Started
+Sistema inteligente para taller + alquiler de vehículos en Gold Coast, Australia.
 
-First, run the development server:
+## Propuesta de Valor
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Taller**: Diagnóstico IA de averías
+- **Alquiler**: Reserva en minutos, sin papeleo
+- **Combinado**: Vehículo de sustitución mientras/repara
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Arquitectura
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Componente | Tecnología |
+|------------|-------------|
+| Frontend | Next.js 15 / Tailwind |
+| Backend | FastAPI (Python) |
+| IA | OpenAI API / Ollama local |
+| DB | PostgreSQL |
+| Hosting | Vercel + Railway/Render |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Roadmap
 
-## Learn More
+### Fase 1 (0-1 mes)
+- [x] Landing básica
+- [ ] Chatbot IA
+- [ ] Sistema reservas
 
-To learn more about Next.js, take a look at the following resources:
+### Fase 2 (1-3 meses)
+- [ ] CRM
+- [ ] SEO
+- [ ] Automatización
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Fase 3 (3-6 meses)
+- [ ] Pricing dinámico
+- [ ] Predictive maintenance
+- [ ] App móvil
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Posicionamiento
 
-## Deploy on Vercel
+> "El taller inteligente que diagnostica tu coche antes de que llegues"
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> "Alquila en minutos, sin papeleo, con IA"
